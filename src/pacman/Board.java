@@ -25,6 +25,13 @@ public class Board extends JComponent {
 				allTiles.add(new Tile(864, i));
 			}
 		}
+		for (int i = 64; i < 608; i++) {
+			if (i % 32 == 0 && i != 320) {
+				allTiles.add(new Tile(64, i));
+				allTiles.add(new Tile(800, i));
+			}
+		}
+		
 	}
 	
 	public boolean isTile(int x, int y) {
@@ -33,6 +40,15 @@ public class Board extends JComponent {
 				return true;
 			}
 			else if (allTiles.get(i).getX() - (allTiles.get(i).getX() % 32) == x && allTiles.get(i).getY() - (allTiles.get(i).getY() % 32) == y) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean isTile(int x, int y, int changex, int changey) {
+		for (int i = 0; i < allTiles.size(); i++) {
+			if (allTiles.get(i).checkCollision(x, y, changex, changey)) {
 				return true;
 			}
 		}

@@ -25,8 +25,9 @@ public class Tile extends JComponent {
 		return ((other.getX() < getX() + getWidth()) && (other.getY() < getY() + getHeight()) && (other.getY() + other.getHeight() > getY()) && (other.getX() + other.getWidth() > getX()));
 	}
 	
-	public boolean checkCollision(int x, int y) {
-		return (x >= getX() && x <= getX() + 32 && y >= getY() && y <= getY() + 32);
+	public boolean checkCollision(int x, int y, int changex, int changey) {
+		Tile tile = new Tile(x + changex, y + changey);
+		return (checkCollision(tile));
 	}
 	
 }

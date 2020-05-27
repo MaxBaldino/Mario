@@ -83,22 +83,26 @@ public class Pacman extends JComponent {
     }
     
     public void update() {
-		if (nextDirection == Direction.DOWN && !board.isTile(getX(), getY() + 1)) {
+    	if (board.isTile(getX(), getY(), dx, dy)) {
+    		dx = 0;
+    		dy = 0;
+    	}
+		if (nextDirection == Direction.DOWN && !board.isTile(getX(), getY(), 0, 1)) {
 			dx = 0;
 			dy = 1;
 			setLocation(getX(), getY() + dy);
 		}
-		else if (nextDirection == Direction.UP && !board.isTile(getX(), getY() - 1)) {
+		else if (nextDirection == Direction.UP && !board.isTile(getX(), getY(), 0, -1)) {
 			dx = 0;
 			dy = -1;
 			setLocation(getX(), getY() + dy);
 		}
-		else if (nextDirection == Direction.RIGHT && !board.isTile(getX() + 1, getY())) {
+		else if (nextDirection == Direction.RIGHT && !board.isTile(getX(), getY(), 1, 0)) {
 			dx = 1;
 			dy = 0;
 			setLocation(getX() + dx, getY());
 		}
-		else if (nextDirection == Direction.LEFT && !board.isTile(getX() - 1, getY())) {
+		else if (nextDirection == Direction.LEFT && !board.isTile(getX() - 1, getY(), -1, 0)) {
 			dx = -1;
 			dy = 0;
 			setLocation(getX() + dx, getY());
