@@ -83,6 +83,7 @@ public class Pacman extends JComponent {
     }
     
     public void update() {
+    	board.checkForDots(this);
     	if (board.isTile(getX(), getY(), dx, dy)) {
     		dx = 0;
     		dy = 0;

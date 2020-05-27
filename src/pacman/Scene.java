@@ -9,7 +9,7 @@ public class Scene extends JPanel{
     private int XAXIS_OF_EVIL_PACMAN = 10;
     private int YAXIS_OF_EVIL_PACMAN = 10;
     public int widhtOfScene = 910;
-    public int heightOfScene = 710;
+    public int heightOfScene = 710; 
     
     Board board = new Board();
     JFrame window = new JFrame("Pacman Game");
@@ -37,8 +37,6 @@ public class Scene extends JPanel{
         window.setSize(widhtOfScene,heightOfScene);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setVisible(true);
-        System.out.println(window.getInsets().right);
-        System.out.println(window.getInsets().bottom);
         
         Timer timer = new Timer(10, new ActionListener()
         		{

@@ -12,6 +12,8 @@ public class Board extends JComponent {
 	private ArrayList<Tile> allTiles = new ArrayList<Tile>();
 	private ArrayList<Dot> allDots = new ArrayList<Dot>();
 	
+	private int score;
+	
 	public Board() {
 		for (int i = 0; i < 896; i++) {
 			if (i % 32 == 0) {
@@ -108,6 +110,8 @@ public class Board extends JComponent {
 				}
 			}
 		}
+		
+		score = 0;
 
 	}
 	
@@ -131,6 +135,35 @@ public class Board extends JComponent {
 		}
 		return false;
 	}
+	
+	public void collectDot(int x, int y) {
+		for (int i = 0; i < allDots.size(); i++) {
+			if (allDots.get(i).getX() == x && allDots.get(i).getY() == y) {
+				incrementScore();
+				allDots.remove(i);
+			}
+		}
+	}
+	
+	public void checkForDots(JComponent other) {
+		for (int i = 0; i < allDots.size(); i++) {
+			if (checkCollision(other, allDots.get(i))) {
+				collectDot(allDots.get(i).getX(), allDots.get(i).getY());
+			}
+		}
+	}
+	
+	public boolean checkCollision(JComponent other, JComponent other2) {
+		return ((other.getX() < other2.getX() + other2.getWidth()) && (other.getY() < other2.getY() + other2.getHeight()) && (other.getY() + other.getHeight() > other2.getY()) && (other.getX() + other.getWidth() > other2.getX()));
+	}
+	
+	public void incrementScore() {
+		score++;
+	}
+
+	public int getScore() {
+		return score;
+	}
 
 	public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
@@ -140,6 +173,7 @@ public class Board extends JComponent {
 		for (int i = 0; i < allDots.size(); i++) {
 			allDots.get(i).paintComponent(g);
 		}
+		g2.drawString(" " + score, 10, 20);
 	}
 	
 }
