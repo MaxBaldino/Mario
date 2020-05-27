@@ -10,8 +10,8 @@ import javax.swing.JComponent;
 public class Board extends JComponent {
 
 	private ArrayList<Tile> allTiles = new ArrayList<Tile>();
+	private ArrayList<Dot> allDots = new ArrayList<Dot>();
 	
-	//Add tiles here, there might be an easier way but it might be manual
 	public Board() {
 		for (int i = 0; i < 896; i++) {
 			if (i % 32 == 0) {
@@ -26,12 +26,89 @@ public class Board extends JComponent {
 			}
 		}
 		for (int i = 64; i < 608; i++) {
-			if (i % 32 == 0 && i != 320) {
+			if (i % 32 == 0 && i != 320 && i != 160 && i != 480) {
 				allTiles.add(new Tile(64, i));
 				allTiles.add(new Tile(800, i));
 			}
 		}
+		for (int i = 64; i < 832; i++) {
+			if (i % 32 == 0 && i != 320 && i != 544) {
+				allTiles.add(new Tile(i, 64));
+				allTiles.add(new Tile(i, 576));
+			}
+		}
+		allTiles.add(new Tile(128, 128));
+		allTiles.add(new Tile(736, 128));
+		allTiles.add(new Tile(128, 512));
+		allTiles.add(new Tile(736, 512));
 		
+		for (int i = 128; i < 480; i++) {
+			if (i % 32 == 0 && i != 160) {
+				allTiles.add(new Tile(128, i));
+				allTiles.add(new Tile(736, i));
+			}
+		}
+		
+		for (int i = 192; i < 704; i++) {
+			if (i % 32 == 0 && i != 480 && i != 384) {
+				allTiles.add(new Tile(i, 512));
+				allTiles.add(new Tile(i, 128));
+			}
+		}
+		
+		for (int i = 192; i < 704; i++) {
+			if (i % 32 == 0 && i != 544 && i != 320) {
+				allTiles.add(new Tile(i, 448));
+				allTiles.add(new Tile(i, 192));
+			}
+		}
+		
+		for (int i = 192; i < 448; i++) {
+			if (i % 32 == 0) {
+				allTiles.add(new Tile(192, i));
+				allTiles.add(new Tile(672, i));
+			}
+		}
+		
+		for (int i = 256; i < 416; i++) {
+			if (i % 32 == 0 && i != 160) {
+				allTiles.add(new Tile(256, i));
+				allTiles.add(new Tile(608, i));
+			}
+		}
+		
+		for (int i = 256; i < 640; i++) {
+			if (i % 32 == 0 && i != 512 && i != 352) {
+				allTiles.add(new Tile(i, 448));
+				allTiles.add(new Tile(i, 256));
+			}
+		}
+		
+		for (int i = 320; i < 416; i++) {
+			if (i % 32 == 0) {
+				allTiles.add(new Tile(320, i));
+				allTiles.add(new Tile(544, i));
+			}
+		}
+		
+		for (int i = 384; i < 576; i++) {
+			if (i % 32 == 0 && i != 512 && i != 352) {
+				allTiles.add(new Tile(i, 384));
+			}
+		}
+		allTiles.add(new Tile(384, 352));
+		allTiles.add(new Tile(480, 352));
+		allTiles.add(new Tile(384, 320));
+		allTiles.add(new Tile(480, 320));
+		
+		for (int i = 0; i < 896; i += 32) {
+			for (int j = 0; j < 672; j+= 32) {
+				if (!isTile(i, j)) {
+					allDots.add(new Dot(i, j));
+				}
+			}
+		}
+
 	}
 	
 	public boolean isTile(int x, int y) {
@@ -59,6 +136,9 @@ public class Board extends JComponent {
 		Graphics2D g2 = (Graphics2D) g;
 		for (int i = 0; i < allTiles.size(); i++) {
 			allTiles.get(i).paintComponent(g);
+		}
+		for (int i = 0; i < allDots.size(); i++) {
+			allDots.get(i).paintComponent(g);
 		}
 	}
 	

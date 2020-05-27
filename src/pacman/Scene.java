@@ -32,6 +32,7 @@ public class Scene extends JPanel{
         Thread thread2 = new Thread(evilPacman2);
         thread2.start();
         window.setBackground(Color.BLACK);
+        window.setResizable(false);
 
         window.setSize(widhtOfScene,heightOfScene);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
