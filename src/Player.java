@@ -10,13 +10,15 @@ public class Player extends JComponent {
 	private Direction nextDirection;
 	private int dx;
 	private int dy;
+	private Board board;
 	
-	public Player(int x, int y) {
+	public Player(int x, int y, Board board) {
 		setSize(32, 32);
 		setLocation(x, y);
 		nextDirection = Direction.DOWN;
 		dx = 0;
 		dy = 0;
+		this.board = board;
 	}
 	
 	public void update() {
@@ -32,16 +34,16 @@ public class Player extends JComponent {
 		else if (nextDirection == Direction.LEFT && board.isTile(getX() - 32 - (getX() % 32), - ((getY() + 32) % 32))) {
 			setLocation(getX() - dx, getY());
 		}
-		else if (dy > 0 && board.isTile(getX() - (getX() % 32), getY() + 32 - ((getY() + 32) % 32)) {
+		else if (dy > 0 && board.isTile(getX() - (getX() % 32), getY() + 32 - ((getY() + 32) % 32))) {
 			setLocation(getX(), getY() + dy);
 		}
-		else if (dy < 0 && board.isTile(getX() - (getX() % 32), getY() - 32 - ((getY() + 32) % 32)) {
+		else if (dy < 0 && board.isTile(getX() - (getX() % 32), getY() - 32 - ((getY() + 32) % 32))) {
 			setLocation(getX(), getY() - dy);
 		}
-		else if (dx > 0 && board.isTile(getX() + 32 - (getX() % 32), getY() - ((getY() + 32) % 32)) {
+		else if (dx > 0 && board.isTile(getX() + 32 - (getX() % 32), getY() - ((getY() + 32) % 32))) {
 			setLocation(getX() + dx, getY());
 		}
-		else if (dx < 0 && board.isTile(getX() - 32 - (getX() % 32), getY() - ((getY() + 32) % 32)) {
+		else if (dx < 0 && board.isTile(getX() - 32 - (getX() % 32), getY() - ((getY() + 32) % 32))) {
 			setLocation(getX() - dx, getY());
 		}
 	}
