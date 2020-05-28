@@ -54,8 +54,11 @@ public class Scene extends JPanel{
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						pacman.update();
-						if (board.checkCollision(pacman, evilPacman1) && board.checkCollision(pacman, evilPacman2) && board.checkCollision(pacman, evilPacman3) && board.checkCollision(pacman, evilPacman4)) {
+						if (board.checkCollision(pacman, evilPacman1) || board.checkCollision(pacman, evilPacman2)|| board.checkCollision(pacman, evilPacman3) || board.checkCollision(pacman, evilPacman4)) {
 							evilPacman1.kill();
+							evilPacman2.kill();
+							evilPacman3.kill();
+							evilPacman4.kill();
 						}
 						evilPacman1.update();
 						evilPacman2.update();
