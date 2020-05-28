@@ -60,7 +60,7 @@ public class EvilPacman extends Pacman implements Runnable{
     	else if (respawnCounter == 0) {
     		board.incrementScore(10);
     		setLocation(spawnX, spawnY);
-    		respawnCounter = 100;
+    		respawnCounter = 300;
     		setdx(0);
     		setdy(0);
     	}
@@ -172,7 +172,7 @@ public class EvilPacman extends Pacman implements Runnable{
 
     
     public void respawn() {
-    	respawnCounter = 100;
+    	respawnCounter = 300;
     	setLocation(spawnX, spawnY);
     }
 
