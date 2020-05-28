@@ -1,3 +1,4 @@
+package pacman;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -32,7 +33,7 @@ public class KeyEvents implements KeyListener {
 
         if(keyEvent.getKeyCode() == KeyEvent.VK_LEFT)
         {
-            pacman.setXAxis(pacman.getxAxis() - speed);
+            pacman.setNextDir(Direction.LEFT);
             pacman.setImagePath(left);
             scene.repaint();
 
@@ -41,14 +42,14 @@ public class KeyEvents implements KeyListener {
         }
         else if(keyEvent.getKeyCode() == KeyEvent.VK_RIGHT)
         {
-            pacman.setXAxis(pacman.getxAxis() + speed);
+        	pacman.setNextDir(Direction.RIGHT);
             pacman.setImagePath(right);
             scene.repaint();
             lastMove = right;
         }
         else if(keyEvent.getKeyCode() == KeyEvent.VK_UP)
         {
-            pacman.setYAxis(pacman.getyAxis() - speed);
+        	pacman.setNextDir(Direction.UP);
             if(lastMove == right)
                 pacman.setImagePath(up_right);
             else
@@ -59,7 +60,7 @@ public class KeyEvents implements KeyListener {
         }
         else if(keyEvent.getKeyCode() == KeyEvent.VK_DOWN)
         {
-            pacman.setYAxis(pacman.getyAxis() + speed);
+        	pacman.setNextDir(Direction.DOWN);
             if(lastMove == right)
                 pacman.setImagePath(down_right);
             else
