@@ -8,9 +8,9 @@ public class KeyEvents implements KeyListener {
     private Scene scene;
     private String right = "images//pacman_right.png";
     private String left = "images//pacman_left.png";
-    private String up_left = "images//pacman_left_up.png";
+   // private String up_left = "images//pacman_left_up.png";
     private String up_right = "images//pacman_right_up.png";
-    private String down_left = "images//pacman_left_down.png";
+   // private String down_left = "images//pacman_left_down.png";
     private String down_right = "images//pacman_right_down.png";
     private String lastMove = "";
 
@@ -30,7 +30,7 @@ public class KeyEvents implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent keyEvent) {
-
+ 
         if(keyEvent.getKeyCode() == KeyEvent.VK_LEFT)
         {
             pacman.setNextDir(Direction.LEFT);
@@ -38,7 +38,7 @@ public class KeyEvents implements KeyListener {
             scene.repaint();
 
             lastMove = left;
-
+ 
         }
         else if(keyEvent.getKeyCode() == KeyEvent.VK_RIGHT)
         {
@@ -53,7 +53,7 @@ public class KeyEvents implements KeyListener {
             if(lastMove == right)
                 pacman.setImagePath(up_right);
             else
-                pacman.setImagePath(up_left);
+                pacman.setImagePath(up_right);
 
             scene.repaint();
 
@@ -64,7 +64,7 @@ public class KeyEvents implements KeyListener {
             if(lastMove == right)
                 pacman.setImagePath(down_right);
             else
-                pacman.setImagePath(down_left);
+                pacman.setImagePath(down_right);
             scene.repaint();
 
         }

@@ -9,7 +9,7 @@ import javax.swing.JComponent;
 
 public class Dot extends JComponent {
 
-	public Dot(int x, int y) {
+	public Dot(int x, int y) { 
 		setLocation(x, y);
 		setSize(32, 32);
 	}

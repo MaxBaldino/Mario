@@ -28,7 +28,7 @@ public class Pacman extends JComponent {
             // I will be able to move in a certain bound
             // I want a window of 500 pixels
             if(this.getX() >= 470)
-            {
+            { 
             	this.setLocation(470, getY());
             }
             else if(this.getX() <= 0)
@@ -168,5 +168,6 @@ public class Pacman extends JComponent {
         ImageIcon img = new ImageIcon(imagePath);
         graphics.drawImage(img.getImage(),getX(),getY(),null);
     }
+    
     
 }
