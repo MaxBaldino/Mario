@@ -10,6 +10,7 @@ public class Pacman extends JComponent {
 	private int dx;
 	private int dy;
 	private Board board;
+	private int spawnX, spawnY;
 
     public Pacman(int x, int y, String imagePath, boolean isAlive, Board board)
     {
@@ -18,6 +19,8 @@ public class Pacman extends JComponent {
         setImagePath(imagePath);
         this.isAlive = isAlive;
         this.board = board;
+        spawnX = x;
+        spawnY = y;
     }
 
     public void setX(int x)
@@ -70,6 +73,14 @@ public class Pacman extends JComponent {
         }
 
     }
+    
+    public void respawn() {
+    	setNextDir(Direction.DOWN);
+    	setdx(0);
+    	setdy(0);
+    	setLocation(spawnX, spawnY);
+    	setImagePath("images//pacman_right.png");
+    }
 
     public void setImagePath(String imagePath)
     {
@@ -91,21 +102,25 @@ public class Pacman extends JComponent {
 		if (nextDirection == Direction.DOWN && !board.isTile(getX(), getY(), 0, 1)) {
 			dx = 0;
 			dy = 2;
+			setImagePath("images//pacman_right_down.png");
 			setLocation(getX(), getY() + dy);
 		}
 		else if (nextDirection == Direction.UP && !board.isTile(getX(), getY(), 0, -1)) {
 			dx = 0;
 			dy = -2;
+			setImagePath("images//pacman_right_up.png");
 			setLocation(getX(), getY() + dy);
 		}
 		else if (nextDirection == Direction.RIGHT && !board.isTile(getX(), getY(), 1, 0)) {
 			dx = 2;
 			dy = 0;
+			setImagePath("images//pacman_right.png");
 			setLocation(getX() + dx, getY());
 		}
 		else if (nextDirection == Direction.LEFT && !board.isTile(getX() - 1, getY(), -1, 0)) {
 			dx = -2;
 			dy = 0;
+			setImagePath("images//pacman_left.png");
 			setLocation(getX() + dx, getY());
 		}
 		else if (dy > 0 && !board.isTile(getX(), getY() + 1)) {

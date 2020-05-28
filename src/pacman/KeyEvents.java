@@ -34,7 +34,6 @@ public class KeyEvents implements KeyListener {
         if(keyEvent.getKeyCode() == KeyEvent.VK_LEFT)
         {
             pacman.setNextDir(Direction.LEFT);
-            pacman.setImagePath(left);
             scene.repaint();
 
             lastMove = left;
@@ -43,28 +42,19 @@ public class KeyEvents implements KeyListener {
         else if(keyEvent.getKeyCode() == KeyEvent.VK_RIGHT)
         {
         	pacman.setNextDir(Direction.RIGHT);
-            pacman.setImagePath(right);
-            scene.repaint();
-            lastMove = right;
+           
         }
         else if(keyEvent.getKeyCode() == KeyEvent.VK_UP)
         {
         	pacman.setNextDir(Direction.UP);
-            if(lastMove == right)
-                pacman.setImagePath(up_right);
-            else
-                pacman.setImagePath(up_left);
-
+            
             scene.repaint();
 
         }
         else if(keyEvent.getKeyCode() == KeyEvent.VK_DOWN)
         {
         	pacman.setNextDir(Direction.DOWN);
-            if(lastMove == right)
-                pacman.setImagePath(down_right);
-            else
-                pacman.setImagePath(down_left);
+            
             scene.repaint();
 
         }

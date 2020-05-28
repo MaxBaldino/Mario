@@ -20,6 +20,10 @@ public class Tile extends JComponent {
 		this.color = color;
 	}
 	
+	public Color getColor() {
+		return color;
+	}
+	
 	public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setColor(color);

@@ -1,9 +1,11 @@
 package pacman;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -192,6 +194,11 @@ public class Board extends JComponent {
 			allTiles.get(i).changeColor(color);
 		}
 		level++;
+		scene.evilPacman1.respawn();
+		scene.evilPacman2.respawn();
+		scene.evilPacman3.respawn();
+		scene.evilPacman4.respawn();
+		scene.pacman.respawn();
 	}
 	
 	public int getLevel() {
@@ -294,8 +301,28 @@ public class Board extends JComponent {
 			allDots.get(i).paintComponent(g);
 		}
 		
-		g2.drawString(" " + score, 436, 368);
-		g2.drawString("Highscore: " + highscore, 436, 384);
+		String HS = "High Score: ";
+		FontMetrics fm = g2.getFontMetrics();
+		g2.setColor(new Color(240, 252, 3));
+		g2.drawString("" + score, 448 - fm.stringWidth("" + score)/2, 372);
+		Font BoldText = new Font("Serif", Font.BOLD, 16);
+		g2.setFont(BoldText);
+		if (allTiles.get(0).getColor().equals(Color.BLUE)) {
+			g2.setColor(Color.RED);
+		}
+		if (allTiles.get(0).getColor().equals(Color.RED)) {
+			g2.setColor(Color.BLUE);
+		}
+		if (allTiles.get(0).getColor().equals(Color.GREEN)) {
+			g2.setColor(Color.MAGENTA);
+		}
+		if (allTiles.get(0).getColor().equals(Color.MAGENTA)) {
+			g2.setColor(Color.GREEN);
+		}
+		if (allTiles.get(0).getColor().equals(Color.ORANGE)) {
+			g2.setColor(Color.BLUE);
+		}
+		g2.drawString(HS + highscore, 434 - fm.stringWidth(HS + highscore)/2, 20);
 	}
 	
 }

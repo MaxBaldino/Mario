@@ -54,7 +54,7 @@ public class EvilPacman extends Pacman implements Runnable{
     	if (scene.getPower() == 0) {
     		board.saveScore();
             JOptionPane.showMessageDialog(null,"You died");
-            System.out.println("I died");
+            //System.out.println("I died");
             System.exit(0);
     	}
     	else if (respawnCounter == 0) {
@@ -170,6 +170,11 @@ public class EvilPacman extends Pacman implements Runnable{
 	    	
     	}
 
+    
+    public void respawn() {
+    	respawnCounter = 100;
+    	setLocation(spawnX, spawnY);
+    }
 
     public void update() {
     	if (respawnCounter > 0) {
