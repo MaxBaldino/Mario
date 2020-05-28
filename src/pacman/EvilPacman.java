@@ -13,6 +13,7 @@ public class EvilPacman extends Pacman implements Runnable{
 
     public EvilPacman(int xAxis, int yAxis, String imagePath, boolean isAlive, Scene scene, Pacman pacman, Board board) {
         super(xAxis, yAxis, imagePath, isAlive, board);
+        setSize(32, 32);
         this.board = board;
         this.scene = scene;
         this.pacman = pacman;
@@ -38,7 +39,81 @@ public class EvilPacman extends Pacman implements Runnable{
         }
 
     }
+    
+    public void changeDirection(double chance) {
+    	if (Math.random() < chance) {
+    		if (Math.random() < 0.5) {
+    			if (pacman.getY() > getY()) {
+    				setNextDir(Direction.DOWN);
+    			}
+    			else if (pacman.getY() < getY()) {
+    				setNextDir(Direction.UP);
+    			}
+    			else if (pacman.getX() > getX()) {
+    				setNextDir(Direction.RIGHT);
+    			}
+    			else if (pacman.getX() < getX()) {
+    				setNextDir(Direction.LEFT);
+    			}
+    		}
+    		else {
+    			if (pacman.getX() > getX()) {
+    				setNextDir(Direction.RIGHT);
+    			}
+    			else if (pacman.getX() < getX()) {
+    				setNextDir(Direction.LEFT);
+    			}
+    			else if (pacman.getY() > getY()) {
+    				setNextDir(Direction.DOWN);
+    			}
+    			else if (pacman.getY() < getY()) {
+    				setNextDir(Direction.UP);
+    			}
+    			
+    		}
+    	}
+    }
 
+    public void update() {
+    	changeDirection(0.01);
+    	if (board.isTile(getX(), getY(), getdx(), getdy())) {
+    		setdx(0);
+    		setdy(0);
+    		changeDirection(1);
+    	}
+    	if (getNextDir() == Direction.DOWN && !board.isTile(getX(), getY(), 0, 1)) {
+			setdx(0);
+			setdy(1);
+			setLocation(getX(), getY() + getdy());
+		}
+		else if (getNextDir() == Direction.UP && !board.isTile(getX(), getY(), 0, -1)) {
+			setdx(0);
+			setdy(-1);
+			setLocation(getX(), getY() + getdy());
+		}
+		else if (getNextDir() == Direction.RIGHT && !board.isTile(getX(), getY(), 1, 0)) {
+			setdx(1);
+			setdy(0);
+			setLocation(getX() + getdx(), getY());
+		}
+		else if (getNextDir() == Direction.LEFT && !board.isTile(getX() - 1, getY(), -1, 0)) {
+			setdx(-1);
+			setdy(0);
+			setLocation(getX() + getdx(), getY());
+		}
+		else if (getdy() > 0 && !board.isTile(getX(), getY() + 1)) {
+			setLocation(getX(), getY() + getdy());
+		}
+		else if (getdy() < 0 && !board.isTile(getX(), getY() - 1)) {
+			setLocation(getX(), getY() + getdy());
+		}
+		else if (getdx() > 0 && !board.isTile(getX() + 1, getY())) {
+			setLocation(getX() + getdx(), getY());
+		}
+		else if (getdx() < 0 && !board.isTile(getX() - 1, getY())) {
+			setLocation(getX() + getdx(), getY());
+		}
+    }
 
     @Override
     public void run() {
