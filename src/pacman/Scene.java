@@ -11,7 +11,9 @@ public class Scene extends JPanel{
     public int heightOfScene = 710; 
     private int power;
     
+
     Board board = new Board(this);
+    
     JFrame window = new JFrame("Pacman Game");
     Pacman pacman = new Pacman(432,416,"images//pacman_right.png", true, board);
     KeyEvents keyEvents = new KeyEvents(pacman, this);

@@ -52,6 +52,7 @@ public class EvilPacman extends Pacman implements Runnable{
     public void kill()
     {
     	if (scene.getPower() == 0) {
+    		board.saveScore();
             JOptionPane.showMessageDialog(null,"You died");
             System.out.println("I died");
             System.exit(0);

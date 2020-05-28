@@ -4,7 +4,12 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import javax.swing.JComponent;
 
@@ -14,7 +19,12 @@ public class Board extends JComponent {
 	private ArrayList<Dot> allDots = new ArrayList<Dot>();
 	
 	private int score;
+	private int highscore;
 	private Scene scene;
+	
+	private File file = new File("highscore.txt");
+	private Scanner reader;
+	private String fileText = "";
 	
 	public Board(Scene scene) {
 		this.scene = scene;
@@ -124,6 +134,34 @@ public class Board extends JComponent {
 		replaceDot(768, 544);
 		
 		score = 0;
+		
+		
+		try {
+			reader = new Scanner(file);
+			while (reader.hasNext()) {
+				fileText += reader.nextLine();
+			}
+		}
+		catch (Exception e) {
+			try {
+				file.createNewFile();
+				reader = new Scanner(file);
+				while (reader.hasNext()) {
+					fileText += reader.nextLine();
+				}
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
+		
+		if (fileText.equals("")) {
+			highscore = 0;
+		}
+		else {
+			highscore = Integer.parseInt(fileText);
+		}
+		
+		reader.close();
 
 	}
 	
@@ -201,6 +239,20 @@ public class Board extends JComponent {
 		if (allDots.size() == 0) {
 			createNewLevel();
 		}
+		if (score > highscore) {
+			highscore = score;
+		}
+	}
+	
+	public void saveScore() {
+		try {
+			FileWriter writer = new FileWriter(file);
+			writer.write("" + highscore);
+			writer.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void replaceDot(int x, int y) {
@@ -234,6 +286,7 @@ public class Board extends JComponent {
 		}
 		
 		g2.drawString(" " + score, 436, 368);
+		g2.drawString("Highscore: " + highscore, 436, 384);
 	}
 	
 }
