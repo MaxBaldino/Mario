@@ -1,3 +1,4 @@
+package pacman;
 
 public enum Direction {
 
