@@ -26,6 +26,8 @@ public class Board extends JComponent {
 	private Scanner reader;
 	private String fileText = "";
 	
+	private int level;
+	
 	public Board(Scene scene) {
 		this.scene = scene;
 		for (int i = 0; i < 896; i++) {
@@ -162,6 +164,8 @@ public class Board extends JComponent {
 		}
 		
 		reader.close();
+		
+		level = 0;
 
 	}
 	
@@ -187,6 +191,11 @@ public class Board extends JComponent {
 		for (int i = 0; i < allTiles.size(); i++) {
 			allTiles.get(i).changeColor(color);
 		}
+		level++;
+	}
+	
+	public int getLevel() {
+		return level;
 	}
 	
 	public boolean isTile(int x, int y) {
