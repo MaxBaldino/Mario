@@ -169,4 +169,5 @@ public class Pacman extends JComponent {
         graphics.drawImage(img.getImage(),getX(),getY(),null);
     }
     
+    
 }
