@@ -80,5 +80,7 @@ public class Scene extends JPanel{
         pacman.drawPacman(graphics);
         evilPacman1.drawPacman(graphics);
         evilPacman2.drawPacman(graphics);
+        evilPacman3.drawPacman(graphics);
+        evilPacman4.drawPacman(graphics);
     }
 }
